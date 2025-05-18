@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { scrapeWebsite} from '../controllers/scrapeController'
+import { scrapeWebsiteHandler} from '../controllers/scrapeController'
 
 export class RootRoutes {
   public router: Router;
@@ -11,7 +11,7 @@ export class RootRoutes {
 
   private initRoutes(): void {
     this.router.get('/', this.getRoot);
-    this.router.post('/scrap', scrapeWebsite);
+    this.router.post('/scrap', scrapeWebsiteHandler);
   }
 
   private getRoot(req: Request, res: Response, next: NextFunction): void {

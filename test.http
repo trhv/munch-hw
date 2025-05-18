@@ -20,6 +20,6 @@ POST http://localhost:3000/scrap HTTP/1.1
 content-type: application/json
 
 {
-    "url": "http://localhost:3000"
+    "url": "https://www.ynet.co.il/home/0,7340,L-8,00.html"
 }
 
