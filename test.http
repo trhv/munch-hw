@@ -7,3 +7,19 @@ content-type: application/json
 {
     "url": "Test Url"
 }
+###
+POST http://localhost:3000/scrap HTTP/1.1
+content-type: application/json
+
+{
+    
+}
+
+###
+POST http://localhost:3000/scrap HTTP/1.1
+content-type: application/json
+
+{
+    "url": "http://localhost:3000"
+}
+
