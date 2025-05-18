@@ -1,8 +1,9 @@
 
 import { Request, Response } from 'express';
+import {scrape} from '../services/scrapeService'
 import { z } from 'zod';
 
-export const scrapeWebsite = async (req: Request, res: Response) => {
+export const scrapeWebsiteHandler = async (req: Request, res: Response) => {
   const { url } = req.body;
   const optionalUrl = z.union([z.string().url(), z.literal("")]);
   const result = optionalUrl.safeParse(url);
@@ -10,6 +11,6 @@ export const scrapeWebsite = async (req: Request, res: Response) => {
   if (!result.success) {
     res.status(400).json({ error: 'Invalid or missing URL.' });
   }
-
-  res.send(`Start Scraping: ${url}`)
+  const scrapeResult = await scrape(url);
+  res.status(200).json(scrapeResult);
 };
