@@ -1,5 +1,6 @@
 import express from 'express';
 import { json } from 'body-parser';
+import { ScrapRoutes } from './routes/scrape';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -8,9 +9,11 @@ const PORT = process.env.PORT || 3000;
 
 app.use(json());
 
-app.get('/', (_req, res) => {
-  res.send('Website Summary Scraper is running.');
-});
+// Register routes
+const scrapRoutes = new ScrapRoutes();
+app.use('/', scrapRoutes.router);
+
+
 
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
