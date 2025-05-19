@@ -23,3 +23,19 @@ content-type: application/json
     "url": "https://myarticles.io/why-self-studying-for-the-c1-german-exam-can-be-difficult/"
 }
 
+
+###
+POST http://localhost:3000/scrap HTTP/1.1
+content-type: application/json
+
+{
+    "url": "https://www.ynet.co.il/home/0,7340,L-8,00.html"
+}
+
+###
+POST http://localhost:3000/scrap HTTP/1.1
+content-type: application/json
+
+{
+    "url": "https://www.amazon.com/-/he/%D7%90%D7%95%D7%96%D7%A0%D7%99%D7%95%D7%AA-%D7%92%D7%99%D7%99%D7%9E%D7%99%D7%A0%D7%92-Razer-BlackShark-V2/dp/B086PKMZ21/ref=sr_1_1?_encoding=UTF8&content-id=amzn1.sym.4976dfad-fe46-475a-8f4e-e901273f094d&dib=eyJ2IjoiMSJ9.xLLfXcoaFYIPJ-ua3cZbYHeRRnX7ZoQhy6I1i60zE74op7FTd6GKduJUmi-cQku50RtFoi8oWuRS2Unltbxm30flYeYtPypZXeShVIhkufOX8hngmdv_aRBIse2y8sINdXrTH6XJJs9ByD4mA_pBiufbQvHlnZBg-BIOw7o9W-lioRiBTylvcxqPFgVCF5AyiKMyNZQ-w0hP-PMXHwMl7pNwDsqvs0IzXOWfF5O59kc.v_56_P3P7bLmEXdPo-N_tm2tox_RTZnwLgEOVhi4PJg&dib_tag=se&keywords=gaming%2Bheadsets&pd_rd_r=f3e7bb92-65d2-47e2-bc56-755be88e7265&pd_rd_w=H0Rti&pd_rd_wg=Qz2fU&qid=1747637018&sr=8-1&th=1"
+} 

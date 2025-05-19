@@ -8,10 +8,10 @@ import {
 export const extractCommonData = async ($: cheerio.Root, webSiteUrl: string) => {
 
   return {
-    title: extractTitle($),
-    metaDescription: extractMetaData($),
-    headings: extractHeadings($),
-    paragraphs: extractParagraphs($),
-    images: extractImages($, webSiteUrl)
+    title: await extractTitle($),
+    metaDescription: await extractMetaData($),
+    headings: await extractHeadings($),
+    paragraphs: await extractParagraphs($),
+    images: await extractImages($, webSiteUrl)
   }
 }
