@@ -1,11 +1,12 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
+import { Logger } from '../utils/logger'
 import { BaseScrapingStrategy } from './scraperStrategies/baseScrapingStrategy'
 import { ArticleStrategy } from './scraperStrategies/articleScraperService'
 import { DocumentStrategy } from './scraperStrategies/documentationScraperService'
 import { ProductStrategy } from './scraperStrategies/productScraperService'
 
-
+const logger = new Logger();
 const strategyMap: Record<string, BaseScrapingStrategy> = {
   article: new ArticleStrategy(),
   product: new ProductStrategy(),
@@ -26,7 +27,7 @@ const getPageType = async ($: cheerio.Root, url: string) => {
   } else if (url.includes('/docs') || $('code').length > 5) {
     pageType = 'documentation';
   }
-
+  logger.info(`The Website: ${webkitURL}, is of Type is: ${pageType}`);
   return pageType;
 }
 
