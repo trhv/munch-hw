@@ -5,6 +5,7 @@ import { BaseScrapingStrategy } from './scraperStrategies/baseScrapingStrategy'
 import { ArticleStrategy } from './scraperStrategies/articleScraperService'
 import { DocumentStrategy } from './scraperStrategies/documentationScraperService'
 import { ProductStrategy } from './scraperStrategies/productScraperService'
+import { extractCommonData } from './commonScraper';
 
 const logger = new Logger();
 const strategyMap: Record<string, BaseScrapingStrategy> = {
@@ -27,7 +28,7 @@ const getPageType = async ($: cheerio.Root, url: string) => {
   } else if (url.includes('/docs') || $('code').length > 5) {
     pageType = 'documentation';
   }
-  logger.info(`The Website: ${webkitURL}, is of Type is: ${pageType}`);
+  logger.info(`The Website: ${url}, is of Type is: ${pageType}`);
   return pageType;
 }
 
@@ -38,9 +39,12 @@ export const scrape = async (webSiteUrl: string) => {
   const $ = cheerio.load(html);
 
   const pageType = await getPageType($, webSiteUrl);
+  const commonData = await extractCommonData($, webSiteUrl);
   const strategy = strategyMap[pageType];
-  const typeSpecific = await strategy.extract($, webSiteUrl);
+  const typeSpecific = strategy ? await strategy.extract($, webSiteUrl) : {};
+
   return {
+    ...commonData,
     pageType,
     ...typeSpecific
   }
