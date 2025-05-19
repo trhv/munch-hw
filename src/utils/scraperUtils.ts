@@ -41,41 +41,32 @@ export const extractImages = async ($: cheerio.Root, url: string) => {
 }
 
 export const extractProduct = async ($: cheerio.Root) => {
-  //TODO
-  return '';
+  const productName = $("h1, .product-title").first().text().trim();
+  return productName;
 }
 
-export const extractPrice= async ($: cheerio.Root) => {
-  //TODO
-  return '';
+export const extractPrice = async ($: cheerio.Root) => {
+  const price = $("[itemprop=price], .price").first().text().trim();
+  return price;
 }
 
 export const extractDescription = async ($: cheerio.Root) => {
-  //TODO
-  return '';
+  const description = $(".product-description").first().text().trim() || "";
+  return description;
 }
 
 export const extractCodeSamples = async ($: cheerio.Root) => {
-  //TODO
-  return '';
-}
-
-export const extractSidebarMenu = async ($: cheerio.Root) => {
-  //TODO
-  return '';
-}
-
-export const extractAuthor = async ($: cheerio.Root) => {
-  //TODO
-  return '';
+  const codeSamples: string[] = $("pre code").slice(0, 3).map((_i, el) => $(el).text().trim()).get();
+  return codeSamples;
 }
 
 export const extractPublishDate = async ($: cheerio.Root) => {
-  //TODO
-  return '';
+  const publishedAt = $("time").first().attr("datetime") || $("time").first().text().trim();
+  return publishedAt;
 }
 
-export const extractMainContent = async ($: cheerio.Root) => {
-  //TODO
-  return '';
+export const extractAuthor = async ($: cheerio.Root) => {
+  const author = $("meta[name=\"author\"]").attr("content") || $("[class*=author]").first().text().trim();
+  return author;
 }
+
